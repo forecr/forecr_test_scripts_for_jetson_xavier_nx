@@ -7,21 +7,6 @@ fi
 
 # Check the board revision
 board_rev_1_2=false
-read -p 'Is it DSBOARD-NX2 Rev-1.2 (y/n) [Default: n] ' board_rev
-case $board_rev in
-	[Yy]* )
-		board_rev_1_2=true
-		echo "Selecting 'y'"
-		;;
-	[Nn]* )
-		board_rev_1_2=false
-		echo "Selecting 'n'"
-		;;
-	* )
-		echo "Selecting default value"
-		;;
-esac
-
 
 # Check the scipts' folder
 SCRIPTS_FOLDER=${PWD}
@@ -163,6 +148,7 @@ function test_menu {
 				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_2_nx.sh
 				;;
 			8 )
+				echo "Key-E Test"
 				sudo gnome-terminal -- watch -n 0.1 lspci
 				sudo gnome-terminal -- watch -n 0.1 lsusb
 				;;
