@@ -6,7 +6,7 @@ if [ "$(whoami)" != "root" ] ; then
 fi
 
 # Check the board revision
-board_rev_1_2=false
+board_rev_1_23=true
 
 # Check the scipts' folder
 SCRIPTS_FOLDER=${PWD}
@@ -160,22 +160,22 @@ function test_menu {
 			10 )
 				echo "RS232 Test"
 				check_nvgetty_service
-				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_rs232_nx.sh $board_rev_1_2
+				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_rs232_nx.sh $board_rev_1_23
 				;;
 			11 )
 				echo "RS422 Test"
 				check_nvgetty_service
-				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_rs422_nx.sh $board_rev_1_2
+				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_rs422_nx.sh $board_rev_1_23
 				;;
 			12 )
 				echo "RS485 Write Test"
 				check_nvgetty_service
-				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_rs485_write_nx.sh $board_rev_1_2
+				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_rs485_write_nx.sh $board_rev_1_23
 				;;
 			13 )
 				echo "RS485 Read Test"
 				check_nvgetty_service
-				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_rs485_read_nx.sh $board_rev_1_2
+				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_rs485_read_nx.sh $board_rev_1_23
 				;;
 			14 )
 				echo "CANBus Transmit Test"
@@ -187,15 +187,15 @@ function test_menu {
 				;;
 			16 )
 				echo "Digital Out Test"
-				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_digital_out_multi_nx.sh
+				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_digital_out_multi_nx.sh $board_rev_1_23
 				;;
 			17 )
 				echo "Digital In-0 Test"
-				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_digital_in0_nx.sh
+				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_digital_in0_nx.sh $board_rev_1_23
 				;;
 			18 )
 				echo "Digital In-1 Test"
-				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_digital_in1_nx.sh
+				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_digital_in1_nx.sh $board_rev_1_23
 				;;
 			19 )
 				echo "Fan Test"
@@ -203,7 +203,7 @@ function test_menu {
 				;;
 			20 )
 				echo "Power LED Test"
-				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_power_led_nx.sh
+				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_power_led_nx.sh $board_rev_1_23
 				;;
 			[Qq]* )
 				echo "Quitting ..."

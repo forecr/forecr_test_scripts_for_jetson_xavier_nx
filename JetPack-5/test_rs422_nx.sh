@@ -4,21 +4,37 @@ if [ "$(whoami)" != "root" ] ; then
 	exit 1
 fi
 
-board_rev_1_2=$1
+BOARD_REV_1_23=$1
+BOARD_REV_1_2=false
 
-sudo echo 443 > /sys/class/gpio/export 
-sudo echo 453 > /sys/class/gpio/export 
-sudo echo out > /sys/class/gpio/PR.00/direction 
-sudo echo out > /sys/class/gpio/PS.04/direction 
-if $board_rev_1_2; then
-	sudo echo 1 > /sys/class/gpio/PR.00/value 
-else
-	sudo echo 0 > /sys/class/gpio/PR.00/value 
+HALF_FULL_NUM=443
+HALF_FULL=PR.00
+HALF_FULL_VAL=0
+RS422_232_NUM=453
+RS422_232=PS.04
+RS422_232_VAL=1
+
+if $BOARD_REV_1_2; then
+	HALF_FULL_VAL=1
 fi
-sudo echo 1 > /sys/class/gpio/PS.04/value
+
+if $BOARD_REV_1_23; then
+	HALF_FULL_NUM=453
+	HALF_FULL=PS.04
+	RS422_232_NUM=443
+	RS422_232=PR.00
+fi
+
+sudo echo $HALF_FULL_NUM > /sys/class/gpio/export 
+sudo echo $RS422_232_NUM > /sys/class/gpio/export 
+sudo echo out > /sys/class/gpio/$HALF_FULL/direction 
+sudo echo out > /sys/class/gpio/$RS422_232/direction 
+
+sudo echo $HALF_FULL_VAL > /sys/class/gpio/$HALF_FULL/value 
+sudo echo $RS422_232_VAL > /sys/class/gpio/$RS422_232/value
 
 sudo gtkterm -p /dev/ttyTHS0 -s 115200
 
-sudo echo 443 > /sys/class/gpio/unexport
-sudo echo 453 > /sys/class/gpio/unexport
+sudo echo $HALF_FULL_NUM > /sys/class/gpio/unexport
+sudo echo $RS422_232_NUM > /sys/class/gpio/unexport
 
