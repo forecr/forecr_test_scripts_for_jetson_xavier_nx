@@ -148,9 +148,9 @@ function test_menu {
 				;;
 			7 )
 				echo "CSI Test"
-				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_1_nx.sh
+				gnome-terminal -- $SCRIPTS_FOLDER/test_csi0_nx.sh
 				sleep 2
-				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_2_nx.sh
+				gnome-terminal -- $SCRIPTS_FOLDER/test_csi1_nx.sh
 				;;
 			8 )
 				echo "Key-E Test"
